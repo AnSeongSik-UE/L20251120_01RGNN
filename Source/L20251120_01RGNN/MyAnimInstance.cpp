@@ -5,6 +5,8 @@
 #include "MyTPC.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
+#include "KismetAnimationLibrary.h"
+
 UMyAnimInstance::UMyAnimInstance()
 {
 }
@@ -17,6 +19,12 @@ void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	if (Character)
 	{
 		GroundSpeed = Character->GetCharacterMovement()->Velocity.Size2D();
+
+		Direction = UKismetAnimationLibrary::CalculateDirection(Character->GetCharacterMovement()->Velocity, Character->GetActorRotation());
 	}
 	
+}
+
+void UMyAnimInstance::AnimNotify_SkeletonNotify()
+{
 }
